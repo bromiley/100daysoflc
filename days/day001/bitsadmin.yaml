@@ -1,0 +1,14 @@
+#detection
+event: NEW_PROCESS
+op: contains
+path: event/COMMAND_LINE
+value: bitsadmin
+
+#response
+- action: report
+  name: 'BITS Admin Usage'
+  metadata:
+    mitre_attack: T1197
+    tactic: Defense Evasion, Persistence 
+    technique: BITS Jobs
+    reference: https://attack.mitre.org/techniques/T1197/
