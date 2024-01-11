@@ -1,0 +1,19 @@
+#detection
+event: NEW_PROCESS
+op: and
+rules:
+ - op: contains
+   path: event/COMMAND_LINE
+   value: rdpclip
+ - op: ends with
+   path: event/PARENT/COMMAND_LINE
+   value: termsvcs
+
+#response
+- action: report
+  name: "Termsvcs Launching rdpclip"
+  metadata:
+    mitre_attack: T1021.001
+    tactic: Lateral Movement
+    technique: "Remote Services: Remote Desktop Protocol"
+    reference: https://attack.mitre.org/techniques/T1021/001/
