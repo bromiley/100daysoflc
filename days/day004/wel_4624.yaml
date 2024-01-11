@@ -1,0 +1,19 @@
+#detection
+event: WEL
+op: and
+rules:
+  - op: is
+    path: event/EVENT/System/EventID
+    value: '4624'
+  - op: is
+    path: event/EVENT/EventData/LogonType
+    value: '10'
+
+#response
+- action: report
+  name: "Type 10 (RDP) Logon Detected"
+  metadata:
+    mitre_attack: T1021.001
+    tactic: Lateral Movement
+    technique: "Remote Services: Remote Desktop Protocol"
+    reference: https://attack.mitre.org/techniques/T1021/001/
