@@ -1,0 +1,13 @@
+#detection
+event: NEW_PROCESS
+op: starts with
+path: event/FILE_PATH
+value: C:\Users\Public
+
+#response
+- action: report
+  name: 'Execution from C:\Users\Public'
+  metadata:
+    mitre_attack: TA0003, TA0005, TA0008, TA0011
+    tactic: Persistence, Defense Evasion, Lateral Movement, C2
+    reference: https://rb.gy/v6gm9n
