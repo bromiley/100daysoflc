@@ -1,0 +1,18 @@
+#detection
+event: NETWORK_CONNECTIONS
+op: and
+rules:
+  - op: is
+    path: event/NETWORK_ACTIVITY/DESTINATION/PORT
+    value: 3389
+  - op: is public address
+    path: event/NETWORK_ACTIVITY/SOURCE/IP_ADDRESS
+
+#response
+- action: report
+  name: External RDP Connection from {{ index (index .event.NETWORK_ACTIVITY 0) "SOURCE" "IP_ADDRESS" }}
+  metadata:
+    mitre_attack: T1021.001
+    tactic: Lateral Movement
+    technique: "Remote Services: Remote Desktop Protocol"
+    reference: https://attack.mitre.org/techniques/T1021/001/

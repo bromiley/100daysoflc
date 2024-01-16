@@ -1,0 +1,14 @@
+#detection
+event: DNS_REQUEST
+op: ends with
+path: event/DOMAIN_NAME
+value: xyz
+
+#response
+- action: report
+  name: DNS Request to .xyz TLD
+  metadata:
+    mitre_attack: T1071.004
+    tactic: DNS
+    technique: Application Layer Protocol
+    reference: https://attack.mitre.org/techniques/T1071/004/
