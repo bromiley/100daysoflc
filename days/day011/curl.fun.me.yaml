@@ -1,0 +1,22 @@
+#detection
+event: NEW_PROCESS
+op: and
+rules:
+  - op: contains
+    path: event/COMMAND_LINE
+    value: curl
+  - op: or
+    rules:
+      - op: contains
+        path: event/COMMAND_LINE
+        value: .me
+      - op: contains
+        path: event/COMMAND_LINE
+        value: .fun
+
+#response
+- action: report
+  name: cURL to Suspicious TLD
+  metadata:
+    cve: CVE-2023-22527
+    reference: https://twitter.com/TheDFIRReport/status/1749424404063232099
